@@ -31,13 +31,7 @@ public class BigDataService extends Service {
 				Log.d(TAG, "screen on " + System.currentTimeMillis());
 				usage.put("val", 1);
 			}
-			usage.saveEventually(new SaveCallback() {
-				
-				@Override
-				public void done(ParseException e) {
-					Log.d(TAG, e.toString());
-				}
-			});
+			usage.saveEventually();
 		}
 	};
 
