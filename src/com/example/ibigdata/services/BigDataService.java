@@ -9,7 +9,9 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.parse.Parse;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.SaveCallback;
 
 public class BigDataService extends Service {
 
@@ -29,7 +31,13 @@ public class BigDataService extends Service {
 				Log.d(TAG, "screen on " + System.currentTimeMillis());
 				usage.put("val", 1);
 			}
-			usage.saveEventually();
+			usage.saveEventually(new SaveCallback() {
+				
+				@Override
+				public void done(ParseException e) {
+					Log.d(TAG, e.toString());
+				}
+			});
 		}
 	};
 
